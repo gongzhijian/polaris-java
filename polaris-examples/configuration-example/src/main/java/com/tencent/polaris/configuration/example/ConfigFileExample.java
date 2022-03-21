@@ -15,6 +15,7 @@ public class ConfigFileExample {
 
 
     public static void main(String[] args) throws Exception {
+        //配置文件三元组
         String namespace = "dev";
         String fileGroup = "myGroup";
         String fileName = "application.properties";

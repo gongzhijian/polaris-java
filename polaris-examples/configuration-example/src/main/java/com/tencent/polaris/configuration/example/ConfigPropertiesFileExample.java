@@ -9,9 +9,6 @@ import com.tencent.polaris.configuration.api.core.ConfigKVFileChangeListener;
 import com.tencent.polaris.configuration.api.core.ConfigPropertyChangeInfo;
 import com.tencent.polaris.configuration.factory.ConfigFileServiceFactory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,9 +20,8 @@ import java.io.InputStreamReader;
  */
 public class ConfigPropertiesFileExample {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConfigPropertiesFileExample.class);
-
     public static void main(String[] args) throws IOException {
+        //配置文件三元组
         String namespace = "dev";
         String fileGroup = "myGroup";
         String fileName = "application.properties";
@@ -47,9 +43,6 @@ public class ConfigPropertiesFileExample {
 
         //更多高级数据结构方法
         //getEnumProperty、getArrayProperty、getJsonProperty
-
-        //获取 Properties
-        // asProperties
 
         //监听变更事件，kv类型的变更事件可以细化到 key 粒度的变更
         configFile.addChangeListener(new ConfigKVFileChangeListener() {

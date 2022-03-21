@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 public class ConfigYamlFileExample {
 
     public static void main(String[] args) throws IOException {
+        //配置文件三元组
         String namespace = "dev";
         String fileGroup = "myGroup";
         //文件名通过 / 分割在管控端按目录格式展示
@@ -43,9 +44,6 @@ public class ConfigYamlFileExample {
 
         //更多高级数据结构方法
         //configFile.getEnumProperty()、configFile.getArrayProperty()、configFile.getJsonProperty()
-
-        //获取 Properties
-        // configFile.asProperties()
 
         //监听变更事件，kv类型的变更事件可以细化到 key 粒度的变更
         configFile.addChangeListener(new ConfigKVFileChangeListener() {
