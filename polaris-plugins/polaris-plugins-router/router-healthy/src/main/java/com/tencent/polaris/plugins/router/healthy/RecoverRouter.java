@@ -41,13 +41,24 @@ public class RecoverRouter extends AbstractServiceRouter {
     public RouteResult router(RouteInfo routeInfo, ServiceInstances instances)
             throws PolarisException {
         //过滤不健康的节点，只有心跳而且没有被熔断的才是健康的
-        List<Instance> healthyInstance = instances.getInstances().stream().filter(
-                instance -> Utils.isHealthyInstance(instance, routeInfo.getStatusDimensions()))
-                .collect(Collectors.toList());
+        List<Instance> healthyInstance;
+        if (routeInfo.isIncludeCircuitBreakInstances()) {
+            //只过滤不健康的实例
+            healthyInstance = instances.getInstances().stream().filter(Instance::isHealthy)
+                    .collect(Collectors.toList());
+        } else {
+            //不包含被熔断的实例，需要过滤被熔断的实例
+            healthyInstance = instances.getInstances().stream().filter(
+                    instance -> Utils.isHealthyInstance(instance, routeInfo.getStatusDimensions()))
+                    .collect(Collectors.toList());
+        }
+
         int healthyInstanceCount = healthyInstance.size();
+        //如果过滤之后，没有实例，则返回全量的实例。推空保护
         if (healthyInstanceCount == 0) {
             return new RouteResult(instances.getInstances(), RouteResult.State.Next);
         }
+
         return new RouteResult(healthyInstance, RouteResult.State.Next);
     }
 
