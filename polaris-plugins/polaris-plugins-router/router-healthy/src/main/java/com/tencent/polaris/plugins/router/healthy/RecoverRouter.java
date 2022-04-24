@@ -74,7 +74,7 @@ public class RecoverRouter extends AbstractServiceRouter implements PluginConfig
     @Override
     public void init(InitContext ctx) throws PolarisException {
         this.recoverRouterConfig = ctx.getConfig().getConsumer().getServiceRouter()
-                .getPluginConfig(getName(), RecoverRouterConfig.class);
+                .getPluginConfigWithCache(getName(), RecoverRouterConfig.class);
     }
 
     @Override

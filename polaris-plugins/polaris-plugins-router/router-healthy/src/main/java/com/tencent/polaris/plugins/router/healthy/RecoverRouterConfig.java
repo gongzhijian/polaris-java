@@ -11,7 +11,7 @@ import com.tencent.polaris.api.config.verify.Verifier;
 public class RecoverRouterConfig implements Verifier {
 
     @JsonProperty
-    private boolean excludeCircuitBreakInstances;
+    private Boolean excludeCircuitBreakInstances;
 
     @Override
     public void verify() {
@@ -22,7 +22,9 @@ public class RecoverRouterConfig implements Verifier {
     public void setDefault(Object defaultConfig) {
         if (defaultConfig != null) {
             RecoverRouterConfig recoverRouterConfig = (RecoverRouterConfig) defaultConfig;
-            setExcludeCircuitBreakInstances(recoverRouterConfig.isExcludeCircuitBreakInstances());
+            if (excludeCircuitBreakInstances != null) {
+                setExcludeCircuitBreakInstances(recoverRouterConfig.isExcludeCircuitBreakInstances());
+            }
         }
     }
 

@@ -47,6 +47,8 @@ public class PluginConfigImpl implements PluginConfig {
 
     private static final Map<String, Class<? extends Verifier>> pluginConfigClazz = new HashMap<>();
 
+    private static final Map<String, Verifier> pluginConfigCache = new HashMap<>();
+
     static {
         ServiceLoader<PluginConfigProvider> providers = ServiceLoader.load(PluginConfigProvider.class);
         for (PluginConfigProvider provider : providers) {
@@ -75,12 +77,25 @@ public class PluginConfigImpl implements PluginConfig {
             T result;
             try {
                 result = mapper.convertValue(properties, clazz);
+
+                pluginConfigCache.put(pluginName, result);
             } catch (IllegalArgumentException e) {
                 throw new PolarisException(ErrorCode.INVALID_CONFIG,
                         String.format("fail to deserialize properties %s to clazz %s for plugin %s", properties,
                                 clazz.getCanonicalName(), pluginName), e);
             }
             return result;
+        }
+    }
+
+    @Override
+    public <T extends Verifier> T getPluginConfigWithCache(String pluginName, Class<T> clazz) throws PolarisException {
+        synchronized (lock) {
+            Verifier pluginConfig = pluginConfigCache.get(pluginName);
+            if (pluginConfig != null) {
+                return (T) pluginConfig;
+            }
+            return getPluginConfig(pluginName, clazz);
         }
     }
 
