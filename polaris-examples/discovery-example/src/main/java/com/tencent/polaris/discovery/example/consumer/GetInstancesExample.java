@@ -42,7 +42,6 @@ public class GetInstancesExample {
 
             // Get healthy instance
             GetHealthyInstancesRequest getHealthyInstancesRequest = new GetHealthyInstancesRequest();
-            getHealthyInstancesRequest.setIncludeCircuitBreak(true);
             getHealthyInstancesRequest.setNamespace(namespace);
             getHealthyInstancesRequest.setService(service);
             InstancesResponse healthyInstancesResponse = consumerAPI.getHealthyInstancesInstance(getHealthyInstancesRequest);

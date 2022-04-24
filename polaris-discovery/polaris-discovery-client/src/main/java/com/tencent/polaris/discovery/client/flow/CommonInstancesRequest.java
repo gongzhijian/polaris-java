@@ -98,7 +98,6 @@ public class CommonInstancesRequest implements ServiceEventKeysProvider, FlowCon
         dstServiceInfo.setMetadata(request.getMetadata());
 
         routeInfo = new RouteInfo(null, dstServiceInfo, null);
-        routeInfo.setIncludeCircuitBreakInstances(request.isIncludeCircuitBreak());
         routeInfo.setIncludeUnhealthyInstances(false);
         criteria = null;
 

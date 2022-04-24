@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tencent.polaris.api.config.verify.Verifier;
 import com.tencent.polaris.factory.util.ConfigUtils;
 
+
 /**
  * 元数据路由的配置
  *
