@@ -22,7 +22,7 @@ public class RecoverRouterConfig implements Verifier {
     public void setDefault(Object defaultConfig) {
         if (defaultConfig != null) {
             RecoverRouterConfig recoverRouterConfig = (RecoverRouterConfig) defaultConfig;
-            if (excludeCircuitBreakInstances != null) {
+            if (excludeCircuitBreakInstances == null) {
                 setExcludeCircuitBreakInstances(recoverRouterConfig.isExcludeCircuitBreakInstances());
             }
         }
