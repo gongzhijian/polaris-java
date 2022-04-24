@@ -41,17 +41,6 @@ public interface PluginConfig {
     <T extends Verifier> T getPluginConfig(String pluginName, Class<T> clazz) throws PolarisException;
 
     /**
-     * 获取插件配置，如果已经初始化过，直接从缓存中获取，无需重新初始化
-     *
-     * @param pluginName 插件名
-     * @param clazz 目标对象的类实例
-     * @param <T> 反序列化的目标类型
-     * @return 插件配置对象
-     * @throws PolarisException 异常
-     */
-    <T extends Verifier> T getPluginConfigWithCache(String pluginName, Class<T> clazz) throws PolarisException;
-
-    /**
      * 获取所有的插件配置
      *
      * @return 所有插件配合

@@ -88,17 +88,6 @@ public class PluginConfigImpl implements PluginConfig {
         }
     }
 
-    @Override
-    public <T extends Verifier> T getPluginConfigWithCache(String pluginName, Class<T> clazz) throws PolarisException {
-        synchronized (lock) {
-            Verifier pluginConfig = pluginConfigCache.get(pluginName);
-            if (pluginConfig != null) {
-                return (T) pluginConfig;
-            }
-            return getPluginConfig(pluginName, clazz);
-        }
-    }
-
     public void setDefaultPluginConfig(PluginConfig pluginConfig) {
         if (null == pluginConfig) {
             return;

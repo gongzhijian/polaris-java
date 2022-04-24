@@ -28,11 +28,11 @@ public class RecoverRouterConfig implements Verifier {
         }
     }
 
-    public boolean isExcludeCircuitBreakInstances() {
+    public Boolean isExcludeCircuitBreakInstances() {
         return excludeCircuitBreakInstances;
     }
 
-    public void setExcludeCircuitBreakInstances(boolean excludeCircuitBreakInstances) {
+    public void setExcludeCircuitBreakInstances(Boolean excludeCircuitBreakInstances) {
         this.excludeCircuitBreakInstances = excludeCircuitBreakInstances;
     }
 }
