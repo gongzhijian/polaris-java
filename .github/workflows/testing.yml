@@ -4,7 +4,7 @@
 name: Testing
 on:
   push:
-    branches: [ main ]
+    branches: [ issues_118_gzj ]
   pull_request:
     branches: [ main ]
 
